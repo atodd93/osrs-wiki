@@ -9,6 +9,8 @@ try {
   const dataPath = path.resolve(__dirname, '../../data/roasts.json');
   const file = fs.readFileSync(dataPath, 'utf-8');
   roasts = JSON.parse(file);
+  console.log("Resolved roast path:", dataPath);
+  console.log(`Loaded ${roasts.length} roasts.`);
 } catch (err) {
   console.error('Failed to load roasts.json:', err);
 }
