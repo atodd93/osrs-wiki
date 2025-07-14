@@ -52,6 +52,18 @@ client.on('messageCreate', async (message) => {
       }
       
       break;
+    case '!poke':
+      if (args.length === 0) {
+        return message.reply('Please provide a user to poke, e.g. `!poke @user`');
+      }
+
+      const userToPoke = message.mentions.users.first();
+      if (!userToPoke) {
+        return message.reply('User not found. Please mention a valid user.');
+      }
+
+      await message.channel.send(`${userToPoke} has been poked, god almighty that's a stinky fart!`);
+      break;
   }
 });
 
