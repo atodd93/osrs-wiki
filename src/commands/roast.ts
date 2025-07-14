@@ -1,9 +1,16 @@
-import { Message, User } from 'discord.js';
-import fs from 'fs';
+import { fileURLToPath } from 'url';
 import path from 'path';
+import fs from 'fs';
+import { Message, User } from 'discord.js';
+
+// These two lines define __dirname in an ESM-safe way
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ✅ Now use __dirname as normal
+const dataPath = path.resolve(__dirname, '../../data/roasts.json');
 
 let roasts: string[] = [];
-
 // Load roasts from JSON once at startup
 try {
   const dataPath = path.resolve(__dirname, '../../data/roasts.json');
