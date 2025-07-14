@@ -45,7 +45,12 @@ client.on('messageCreate', async (message) => {
       }
       break;
     case '!gay':
-      await message.reply(`You are ${Math.floor(Math.random() * 100)}% gay!`)
+      if (args.length > 0) {
+        await message.channel.send(`${args[0]} is ${Math.floor(Math.random() * 100)}% gay`);
+      } else {
+        await message.reply(`You are ${Math.floor(Math.random() * 100)}% gay`)
+      }
+      
       break;
   }
 });
