@@ -69,7 +69,7 @@ client.on('messageCreate', async (message) => {
         return message.reply('Please provide a beer to search for, e.g. Guinness');
       }
 
-      url = `https://www.beeradvocate.com/search?q=${encodeURIComponent(args.join(' '))}+beer`;
+      url = `https://www.beeradvocate.com/search?q=${encodeURIComponent(args.join(' '))}`;
 
 
       
