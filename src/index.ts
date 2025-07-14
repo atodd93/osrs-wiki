@@ -1,5 +1,6 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import 'dotenv/config';
+import { handleRoastCommand } from './commands/roast.js';
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
@@ -74,6 +75,9 @@ client.on('messageCreate', async (message) => {
 
       
       await message.reply(`${url}`);
+      break;
+    case '!roast':
+      await handleRoastCommand(message);
       break;
   }
 });
