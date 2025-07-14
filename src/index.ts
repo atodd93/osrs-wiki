@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import 'dotenv/config';
 import { handleRoastCommand } from './commands/roast.js';
+import fs from 'fs';
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
@@ -69,15 +70,18 @@ client.on('messageCreate', async (message) => {
       if (args.length === 0) {
         return message.reply('Please provide a beer to search for, e.g. Guinness');
       }
-
       url = `https://www.beeradvocate.com/search?q=${encodeURIComponent(args.join(' '))}`;
-
-
-      
       await message.reply(`${url}`);
       break;
     case '!roast':
       await handleRoastCommand(message);
+      break;
+    default:
+      if (client.user && message.mentions.has(client.user)) {
+        const jerkResponses = JSON.parse(fs.readFileSync('data/ping_responses.json', 'utf-8'));
+        const response = jerkResponses[Math.floor(Math.random() * jerkResponses.length)];
+        await message.reply(response);
+      }
       break;
   }
 });
