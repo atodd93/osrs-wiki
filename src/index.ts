@@ -25,7 +25,7 @@ client.on('messageCreate', async (message) => {
 
       // Optional: encode for a URL (e.g. for web scraping or API)
       const encoded = encodeURIComponent(searchTerm);
-      const url = `https://oldschool.runescape.wiki/w/Special:Search?search=${encoded}`;
+      var url = `https://oldschool.runescape.wiki/w/Special:Search?search=${encoded}`;
 
       try {
         const res = await fetch(url);
@@ -63,6 +63,17 @@ client.on('messageCreate', async (message) => {
       }
 
       await message.channel.send(`${userToPoke} has been poked, god almighty that's a stinky fart!`);
+      break;
+    case '!beer':
+      if (args.length === 0) {
+        return message.reply('Please provide a beer to search for, e.g. Guinness');
+      }
+
+      url = `https://www.beeradvocate.com/search?q=${encodeURIComponent(args.join(' '))}+beer`;
+
+
+      
+      await message.reply(`${url}`);
       break;
   }
 });
