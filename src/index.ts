@@ -85,7 +85,10 @@ client.on('messageCreate', async (message) => {
         const jerkResponses = JSON.parse(fs.readFileSync('data/ping_responses.json', 'utf-8'));
         const response = jerkResponses[Math.floor(Math.random() * jerkResponses.length)];
         await message.reply(response);
+      } else if (/gnome child/i.test(message.content)) {
+        await message.reply('What you mean is "gnome child"');
       }
+
       break;
   }
 });
