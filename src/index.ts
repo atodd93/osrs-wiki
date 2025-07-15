@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import 'dotenv/config';
 import { handleRoastCommand } from './commands/roast.js';
+import { handleComplimentCommand } from './commands/compliments.js';
 import fs from 'fs';
 
 const client = new Client({
@@ -75,6 +76,9 @@ client.on('messageCreate', async (message) => {
       break;
     case '!roast':
       await handleRoastCommand(message);
+      break;
+    case '!compliment':
+      await handleComplimentCommand(message);
       break;
     default:
       if (client.user && message.mentions.has(client.user)) {
