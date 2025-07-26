@@ -80,6 +80,9 @@ client.on('messageCreate', async (message) => {
     case '!compliment':
       await handleComplimentCommand(message);
       break;
+    case '!dink':
+      await message.reply(`Dink is a plugin you can get on RuneLite that uses a webhook. Please use the supplied webhook and you can use Dink on this server too: <awaiting per-server webhook implementation>`)
+      break;
     default:
       if (client.user && message.mentions.has(client.user)) {
         const jerkResponses = JSON.parse(fs.readFileSync('data/ping_responses.json', 'utf-8'));
